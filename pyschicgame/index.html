@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Psychic Game</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Added a link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+<body>
+    <!-- <div id="theGame">Pick a Number between 1 and 10. You have 5 guesses to try and guess what I guess.</div> -->
+    <div id="wins"></div>
+    <div id="loses"></div>
+    <div id="guesses"></div>
+    <div id="youLost"></div>
+    <div id="youWon"></div>
+
+
+  <script type="text/javascript">
+        var totalWins = 0;
+        var totalloses = 0;
+        var totalGuesses = 0;
+        var guessChoices = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] 
+        var userNumber = 10;
+        var answer;
+        var randomNumber = Math.floor(Math.random() * userNumber +1);
+
+        for (var counter = 0; counter < 5; counter++) {
+            if (counter < 5 && answer != randomNumber) {
+            answer = prompt('Please pick a number between 1 and ' + userNumber /*+ ' - Answer is ' + randomNumber*/);
+            //console.log("Last guess was: " + answer);
+            //console.log("Counter is currently: " + counter);
+            } else if (answer == randomNumber) {
+                document.getElementById("youWon").innerHTML = "Woot! You have the correct number!<br>The Random Number Was " + randomNumber + ".<br>It Took You "  + counter + " attempts to get it right!";
+                totalWins++;
+                document.getElementById("wins").innerHTML = "Total wins " + totalWins;
+                document.getElementById("loses").innerHTML = "Total loses " + totalloses;
+                break;
+            }
+        }
+
+        if (answer != randomNumber) {
+            document.getElementById("youLost").innerHTML = "Sorry, you ran out of tries.  Refresh the page to try again!";
+            totalloses++;
+            document.getElementById("wins").innerHTML = "Total wins " + totalWins;
+            document.getElementById("loses").innerHTML = "Total loses " + totalloses;
+        }
+
+
+            //document.onkeyup = function(event) {
+            //    var userGuess = event.key;
+            //};
+
+
+  </script>
+  
+</body>
+</html>
